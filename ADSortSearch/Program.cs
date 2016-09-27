@@ -22,9 +22,11 @@ namespace ADSortSearch {
 
         private const int DefaultSeedValue = -1;
 
-        public CollectionSort(int length, int seed = DefaultSeedValue) {
-            Ints = Range(0, length).ToArray();
+        public CollectionSort(int length, int seed = DefaultSeedValue, bool ordered = true) {
             Random = SetRandom(seed);
+            Ints = ordered
+                ? Range(0, length).ToArray()
+                : Range(0, length).Select(i => Random.Next(length)).ToArray();
         }
 
         public CollectionSort(IEnumerable<int> collection, int seed = DefaultSeedValue) {
