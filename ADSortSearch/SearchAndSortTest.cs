@@ -19,6 +19,8 @@ namespace ADSortSearch {
         protected Random Random { get; } = new Random(Seed);
         protected int[] Ints { get; }
         public abstract TimeSpan Search(int repeats);
+        protected Stopwatch Watch { get; } = new Stopwatch();
+        public TimeSpan StopWatchResult { get; set; }
 
         public Tuple<TimeSpan, int[]> BubbleSort() {
             var startNew = Stopwatch.StartNew();
