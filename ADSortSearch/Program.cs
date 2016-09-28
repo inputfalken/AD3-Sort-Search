@@ -6,35 +6,43 @@ using static System.Linq.Enumerable;
 
 namespace ADSortSearch {
     internal static class Program {
-        private static void Main(string[] args) {
-            var collectionSort = new CollectionSort((int) Math.Pow(5, 10));
+        private static void Main(string[] args) {}
 
-            //collectionSort.PerformBinarySearch(20);
+        private static Search CreateSearch(Search search) => search;
+    }
 
-            Console.WriteLine(collectionSort.PerformBinarySearch(10));
-            Console.WriteLine(collectionSort.PerformLinearSearch(10));
+    internal abstract class Search {
+        protected Search(int length, bool sorted) {
+            Ints = sorted ? Range(0, length).ToArray() : Range(0, length).Select(i => 2).ToArray();
+        }
+
+        private const int Seed = 5;
+        protected Random Random { get; } = new Random(Seed);
+        protected int[] Ints { get; }
+        public abstract TimeSpan Sort(int repeats);
+
+        public TimeSpan BubbleSort() {
+            var next = 0;
+            var startNew = Stopwatch.StartNew();
+            for (var i = 0; i < Ints.Length; i++) {
+                for (var j = 0; j < Ints.Length; j++) {
+                    var current = Ints[j];
+                    if (j != Ints.Length)
+                        next = Ints[j];
+                    if (current <= next) continue;
+                    Ints[current] = next;
+                    Ints[next] = current;
+                }
+            }
+
+            startNew.Stop();
+            return startNew.Elapsed;
         }
     }
 
-    internal class CollectionSort {
-        private int[] Ints { get; }
-        private Random Random { get; }
+    internal class Binary : Search {
+        public Binary(int length, bool sorted) : base(length, sorted) {}
 
-        private const int DefaultSeedValue = -1;
-
-        public CollectionSort(int length, int seed = DefaultSeedValue, bool ordered = true) {
-            Random = SetRandom(seed);
-            Ints = ordered
-                ? Range(0, length).ToArray()
-                : Range(0, length).Select(i => Random.Next(length)).ToArray();
-        }
-
-        public CollectionSort(IEnumerable<int> collection, int seed = DefaultSeedValue) {
-            Ints = collection.ToArray();
-            Random = SetRandom(seed);
-        }
-
-        private static Random SetRandom(int seed = -1) => seed == DefaultSeedValue ? new Random() : new Random(seed);
 
         /// <summary>
         ///     First checks if collection is sorted, if not it will throw an exception.
@@ -43,7 +51,7 @@ namespace ADSortSearch {
         /// </summary>
         /// <param name="repeats"></param>
         /// <returns>The elapsed time for all attempts</returns>
-        public TimeSpan PerformBinarySearch(int repeats) {
+        public override TimeSpan Sort(int repeats) {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a < p.b))
                 throw new Exception("Collection must be sorted");
@@ -61,33 +69,23 @@ namespace ADSortSearch {
             }
             return startNew.Elapsed;
         }
+    }
 
-        public TimeSpan PerformLinearSearch(int repeats) {
+    internal class Linear : Search {
+        public override TimeSpan Sort(int repeats) {
             var startNew = Stopwatch.StartNew();
             for (var i = 0; i < repeats; i++) {
                 var next = Random.Next(Ints.Length);
-                if (Ints.Any(number => number == next))
-                    startNew.Stop();
-            }
-            return startNew.Elapsed;
-        }
-
-        public TimeSpan PerformBubbleSort() {
-            var next = 0;
-            var startNew = Stopwatch.StartNew();
-            for (var i = 0; i < Ints.Length; i++) {
-                for (var j = 0; j < Ints.Length; j++) {
-                    var current = Ints[j];
-                    if (j != Ints.Length)
-                        next = Ints[j];
-                    if (current <= next) continue;
-                    Ints[current] = next;
-                    Ints[next] = current;
+                foreach (var number in Ints) {
+                    if (number == next) {
+                        startNew.Stop();
+                        break;
+                    }
                 }
             }
-
-            startNew.Stop();
             return startNew.Elapsed;
         }
+
+        public Linear(int length, bool sorted) : base(length, sorted) {}
     }
 }
