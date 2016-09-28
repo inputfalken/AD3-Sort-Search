@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ADSortSearch {
-    public class Linear : Search {
+    public class Linear : SearchAndSortTest {
         public override TimeSpan Sort(int repeats) {
             var startNew = Stopwatch.StartNew();
             for (var i = 0; i < repeats; i++) {

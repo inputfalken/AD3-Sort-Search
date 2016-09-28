@@ -4,14 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace ADSortSearch {
-    public abstract class Search {
-        protected Search(int length, bool sorted) {
+    public abstract class SearchAndSortTest {
+        protected SearchAndSortTest(int length, bool sorted) {
             Ints = sorted
                 ? Enumerable.Range(0, length).ToArray()
                 : Enumerable.Range(0, length).Select(i => Random.Next(length)).ToArray();
         }
 
-        protected Search(IEnumerable<int> enumerable) {
+        protected SearchAndSortTest(IEnumerable<int> enumerable) {
             Ints = enumerable.ToArray();
         }
 
@@ -35,6 +35,6 @@ namespace ADSortSearch {
             return new Tuple<TimeSpan, int[]>(startNew.Elapsed, Ints);
         }
 
-        public static Search CreateSearch(Search search) => search;
+        public static SearchAndSortTest CreateSearch(SearchAndSortTest searchAndSortTest) => searchAndSortTest;
     }
 }

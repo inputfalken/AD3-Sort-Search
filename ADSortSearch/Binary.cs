@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace ADSortSearch {
-    public class Binary : Search {
+    public class Binary : SearchAndSortTest {
         public Binary(int length, bool sorted) : base(length, sorted) {}
         public Binary(IEnumerable<int>  enumerable) : base(enumerable) {}
 
