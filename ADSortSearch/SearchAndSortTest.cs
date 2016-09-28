@@ -22,7 +22,7 @@ namespace ADSortSearch {
         protected Stopwatch Watch { get; } = new Stopwatch();
         public TimeSpan StopWatchResult { get; set; }
 
-        public Tuple<TimeSpan, int[]> BubbleSort() {
+        public int[] BubbleSort() {
             var startNew = Stopwatch.StartNew();
             for (var i = 0; i < Ints.Length - 1; i++) {
                 for (var j = 0; j < Ints.Length - 1; j++) {
@@ -34,7 +34,7 @@ namespace ADSortSearch {
                 }
             }
             startNew.Stop();
-            return new Tuple<TimeSpan, int[]>(startNew.Elapsed, Ints);
+            return Ints;
         }
 
         public static SearchAndSortTest CreateSearch(SearchAndSortTest searchAndSortTest) => searchAndSortTest;
