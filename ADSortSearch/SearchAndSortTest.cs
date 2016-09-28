@@ -23,7 +23,7 @@ namespace ADSortSearch {
         public TimeSpan StopWatchResult { get; set; }
 
         public int[] BubbleSort() {
-            var startNew = Stopwatch.StartNew();
+            Watch.Start();
             for (var i = 0; i < Ints.Length - 1; i++) {
                 for (var j = 0; j < Ints.Length - 1; j++) {
                     if (Ints[j] > Ints[j + 1]) {
@@ -33,7 +33,8 @@ namespace ADSortSearch {
                     }
                 }
             }
-            startNew.Stop();
+            StopWatchResult = Watch.Elapsed;
+            Watch.Reset();
             return Ints;
         }
 
