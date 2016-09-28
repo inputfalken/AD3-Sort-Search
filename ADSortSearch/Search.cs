@@ -5,7 +5,7 @@ using System.Linq;
 namespace ADSortSearch {
     internal abstract class Search {
         protected Search(int length, bool sorted) {
-            Ints = sorted ? Enumerable.Range(0, length).ToArray() : Enumerable.Range(0, length).Select(i => 2).ToArray();
+            Ints = sorted ? Enumerable.Range(0, length).ToArray() : Enumerable.Range(0, length).Select(i => Random.Next(length)).ToArray();
         }
 
         private const int Seed = 5;
