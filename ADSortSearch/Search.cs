@@ -29,5 +29,7 @@ namespace ADSortSearch {
             startNew.Stop();
             return new Tuple<TimeSpan, int[]>(startNew.Elapsed, Ints);
         }
+
+        public static Search CreateSearch(Search search) => search;
     }
 }
