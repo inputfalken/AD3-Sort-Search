@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace ADSortSearch {
-    internal abstract class Search {
+    public abstract class Search {
         protected Search(int length, bool sorted) {
             Ints = sorted
                 ? Enumerable.Range(0, length).ToArray()

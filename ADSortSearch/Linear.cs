@@ -2,7 +2,7 @@
 using System.Diagnostics;
 
 namespace ADSortSearch {
-    internal class Linear : Search {
+    public class Linear : Search {
         public override TimeSpan Sort(int repeats) {
             var startNew = Stopwatch.StartNew();
             for (var i = 0; i < repeats; i++) {

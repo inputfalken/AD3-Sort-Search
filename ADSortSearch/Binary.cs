@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace ADSortSearch {
-    internal class Binary : Search {
+    public class Binary : Search {
         public Binary(int length, bool sorted) : base(length, sorted) {}
 
 
