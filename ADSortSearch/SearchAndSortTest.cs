@@ -18,7 +18,7 @@ namespace ADSortSearch {
         private const int Seed = 5;
         protected Random Random { get; } = new Random(Seed);
         protected int[] Ints { get; }
-        public abstract TimeSpan Search(int repeats);
+        public abstract int[] Search(int repeats);
         protected Stopwatch Watch { get; } = new Stopwatch();
         public TimeSpan StopWatchResult { get; set; }
 

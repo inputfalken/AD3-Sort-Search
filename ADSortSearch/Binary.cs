@@ -6,7 +6,7 @@ using System.Linq;
 namespace ADSortSearch {
     public class Binary : SearchAndSortTest {
         public Binary(int length, bool sorted) : base(length, sorted) {}
-        public Binary(IEnumerable<int>  enumerable) : base(enumerable) {}
+        public Binary(IEnumerable<int> enumerable) : base(enumerable) {}
 
 
         /// <summary>
@@ -16,15 +16,15 @@ namespace ADSortSearch {
         /// </summary>
         /// <param name="repeats"></param>
         /// <returns>The elapsed time for all attempts</returns>
-        public override TimeSpan Search(int repeats) {
+        public override int[] Search(int repeats) {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
-            var startNew = Stopwatch.StartNew();
-            for (var i = 0; i < repeats; i++) {
-                var lo = 0;
-                var hi = Ints.Length - 1;
-                var key = Random.Next(Ints.Length);
+            var arr = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
+            Watch.Start();
+            var lo = 0;
+            var hi = Ints.Length - 1;
+            foreach (var key in arr) {
                 while (lo <= hi) {
                     var mid = lo + (hi - lo)/2;
                     if (key < Ints[mid]) hi = mid - 1;
@@ -32,7 +32,9 @@ namespace ADSortSearch {
                     else break;
                 }
             }
-            return startNew.Elapsed;
+            StopWatchResult = Watch.Elapsed;
+            Watch.Reset();
+            return arr;
         }
     }
 }
