@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
 namespace ADSortSearch {
     public class Binary : Search {
         public Binary(int length, bool sorted) : base(length, sorted) {}
+        public Binary(IEnumerable<int>  enumerable) : base(enumerable) {}
 
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ADSortSearch {
@@ -18,5 +19,6 @@ namespace ADSortSearch {
         }
 
         public Linear(int length, bool sorted) : base(length, sorted) {}
+        public Linear(IEnumerable<int>  enumerable) : base(enumerable) {}
     }
 }

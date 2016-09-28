@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -8,6 +9,10 @@ namespace ADSortSearch {
             Ints = sorted
                 ? Enumerable.Range(0, length).ToArray()
                 : Enumerable.Range(0, length).Select(i => Random.Next(length)).ToArray();
+        }
+
+        protected Search(IEnumerable<int> enumerable) {
+            Ints = enumerable.ToArray();
         }
 
         private const int Seed = 5;
