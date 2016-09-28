@@ -20,7 +20,7 @@ namespace ADSortSearch {
         protected int[] Ints { get; }
         public abstract int[] Search(int repeats);
         protected Stopwatch Watch { get; } = new Stopwatch();
-        public TimeSpan StopWatchResult { get; set; }
+        public TimeSpan StopWatchResult { get; protected set; }
 
         public int[] BubbleSort() {
             Watch.Start();
