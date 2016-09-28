@@ -14,19 +14,16 @@ namespace ADSortSearch {
         public abstract TimeSpan Sort(int repeats);
 
         public TimeSpan BubbleSort() {
-            var next = 0;
             var startNew = Stopwatch.StartNew();
-            for (var i = 0; i < Ints.Length; i++) {
-                for (var j = 0; j < Ints.Length; j++) {
-                    var current = Ints[j];
-                    if (j != Ints.Length)
-                        next = Ints[j];
-                    if (current <= next) continue;
-                    Ints[current] = next;
-                    Ints[next] = current;
+            for (var i = 0; i < Ints.Length - 1; i++) {
+                for (var j = 0; j < Ints.Length - 1; j++) {
+                    if (Ints[j] > Ints[j + 1]) {
+                        var temp = Ints[j];
+                        Ints[j] = Ints[j + 1];
+                        Ints[j + 1] = temp;
+                    }
                 }
             }
-
             startNew.Stop();
             return startNew.Elapsed;
         }
