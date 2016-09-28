@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace ADSortSearch {
     public class Linear : SearchAndSortTest {
-        public override TimeSpan Sort(int repeats) {
+        public override TimeSpan Search(int repeats) {
             var startNew = Stopwatch.StartNew();
             for (var i = 0; i < repeats; i++) {
                 var next = Random.Next(Ints.Length);

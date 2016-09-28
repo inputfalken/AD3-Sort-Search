@@ -18,7 +18,7 @@ namespace ADSortSearch {
         private const int Seed = 5;
         protected Random Random { get; } = new Random(Seed);
         protected int[] Ints { get; }
-        public abstract TimeSpan Sort(int repeats);
+        public abstract TimeSpan Search(int repeats);
 
         public Tuple<TimeSpan, int[]> BubbleSort() {
             var startNew = Stopwatch.StartNew();
