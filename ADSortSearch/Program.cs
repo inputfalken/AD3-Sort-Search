@@ -18,7 +18,7 @@ namespace ADSortSearch {
             const int repeats = 100000;
             const bool sorted = true;
             const int powBase = 2;
-            for (var i = 10; i < 15; i++) {
+            for (var i = 10; i <= 15; i++) {
                 var measureBinary = Measurement.CreateNew(new Binary((int) Math.Pow(powBase, i), sorted));
                 var measureLinear = Measurement.CreateNew(new Linear((int) Math.Pow(powBase, i), sorted));
                 var measureBubble = Measurement.CreateNew(new Bubble((int) Math.Pow(powBase, i), !sorted));
