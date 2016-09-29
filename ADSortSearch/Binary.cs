@@ -16,7 +16,7 @@ namespace ADSortSearch {
         /// </summary>
         /// <param name="repeats"></param>
         /// <returns>The elapsed time for all attempts</returns>
-        public override int[] Search(int repeats) {
+        public override int[] Measure(int repeats) {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");

@@ -20,8 +20,8 @@ namespace ADSortSearch {
             for (var i = 10; i < 15; i++) {
                 var measureBinary = Measurement.CreateSearch(new Binary((int) Math.Pow(powBase, i), sorted));
                 var measureLinear = Measurement.CreateSearch(new Linear((int) Math.Pow(powBase, i), sorted));
-                measureLinear.Search(repeats);
-                measureBinary.Search(repeats);
+                measureLinear.Start(repeats);
+                measureBinary.Start(repeats);
                 binaryResults.Enqueue(
                     measureBinary.StopWatchResult.TotalMilliseconds.ToString(CultureInfo.InvariantCulture)
                 );
@@ -30,9 +30,9 @@ namespace ADSortSearch {
                 );
             }
 
-            stringBuilder.AppendLine("Binary Search: ");
+            stringBuilder.AppendLine("Binary Start: ");
             while (binaryResults.Any()) stringBuilder.AppendLine(binaryResults.Dequeue());
-            stringBuilder.AppendLine("\nLinear Search: ");
+            stringBuilder.AppendLine("\nLinear Start: ");
             while (linearResults.Any()) stringBuilder.AppendLine(linearResults.Dequeue());
             return stringBuilder.ToString();
         }

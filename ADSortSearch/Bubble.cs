@@ -2,7 +2,7 @@
 
 namespace ADSortSearch {
     class Bubble : Measurement {
-        public override int[] Search(int repeats) {
+        public override int[] Measure(int repeats) {
             Watch.Start();
             for (var repeat = 0; repeat < repeats; repeat++) {
                 for (var i = 0; i < Ints.Length - 1; i++) {
