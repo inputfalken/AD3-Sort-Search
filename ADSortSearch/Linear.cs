@@ -5,18 +5,15 @@ using System.Linq;
 
 namespace ADSortSearch {
     public class Linear : Measurement {
-        public override int[] Start(int repeats) {
+        protected override int[] StartMeasurment(int repeats) {
             var keys = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
-            Watch.Start();
-                foreach (var key in keys) {
-                    foreach (var number in Ints) {
-                        if (number == key) {
-                            break;
-                        }
+            foreach (var key in keys) {
+                foreach (var number in Ints) {
+                    if (number == key) {
+                        break;
                     }
                 }
-            StopWatchResult = Watch.Elapsed;
-            Watch.Reset();
+            }
             return keys;
         }
 

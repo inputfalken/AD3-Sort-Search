@@ -16,12 +16,11 @@ namespace ADSortSearch {
         /// </summary>
         /// <param name="repeats"></param>
         /// <returns>The elapsed time for all attempts</returns>
-        public override int[] Start(int repeats) {
+        protected override int[] StartMeasurment(int repeats) {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
             var arr = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
-            Watch.Start();
             var lo = 0;
             var hi = Ints.Length - 1;
             foreach (var key in arr) {
@@ -32,8 +31,6 @@ namespace ADSortSearch {
                     else break;
                 }
             }
-            StopWatchResult = Watch.Elapsed;
-            Watch.Reset();
             return arr;
         }
     }
