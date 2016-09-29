@@ -18,10 +18,10 @@ namespace ADSortSearch {
         private const int Seed = 5;
         protected Random Random { get; } = new Random(Seed);
         protected int[] Ints { get; }
-        public abstract int[] Measure(int repeats);
+        public abstract int[] Start(int repeats);
         protected Stopwatch Watch { get; } = new Stopwatch();
         public TimeSpan StopWatchResult { get; protected set; }
 
-        public static Measurement CreateSearch(Measurement measurement) => measurement;
+        public static Measurement CreateNew(Measurement measurement) => measurement;
     }
 }

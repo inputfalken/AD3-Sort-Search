@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ADSortSearch {
     public class Linear : Measurement {
-        public override int[] Measure(int repeats) {
+        public override int[] Start(int repeats) {
             var keys = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
             Watch.Start();
                 foreach (var key in keys) {

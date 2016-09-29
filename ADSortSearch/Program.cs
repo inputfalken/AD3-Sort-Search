@@ -18,8 +18,8 @@ namespace ADSortSearch {
             const bool sorted = true;
             const int powBase = 2;
             for (var i = 10; i < 15; i++) {
-                var measureBinary = Measurement.CreateSearch(new Binary((int) Math.Pow(powBase, i), sorted));
-                var measureLinear = Measurement.CreateSearch(new Linear((int) Math.Pow(powBase, i), sorted));
+                var measureBinary = Measurement.CreateNew(new Binary((int) Math.Pow(powBase, i), sorted));
+                var measureLinear = Measurement.CreateNew(new Linear((int) Math.Pow(powBase, i), sorted));
                 measureLinear.Start(repeats);
                 measureBinary.Start(repeats);
                 binaryResults.Enqueue(
