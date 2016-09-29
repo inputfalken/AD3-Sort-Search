@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace ADSortSearch {
-    public class Linear : SearchAndSortTest {
+    public class Linear : Measurement {
         public override int[] Search(int repeats) {
             var keys = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
             Watch.Start();
