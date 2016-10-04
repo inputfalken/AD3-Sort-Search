@@ -21,7 +21,7 @@ namespace ADSortSearch {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
-            watch.Start();
+            watch.Restart();
             var arr = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
             var lo = 0;
             var hi = Ints.Length - 1;
