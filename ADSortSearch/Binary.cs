@@ -15,11 +15,13 @@ namespace ADSortSearch {
         ///     Each iteration in the for loop will perform a binary search.
         /// </summary>
         /// <param name="repeats"></param>
+        /// <param name="watch"></param>
         /// <returns>The elapsed time for all attempts</returns>
-        protected override int[] StartMeasurment(int repeats) {
+        protected override int[] StartMeasurment(int repeats, Stopwatch watch) {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
+            watch.Start();
             var arr = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
             var lo = 0;
             var hi = Ints.Length - 1;
