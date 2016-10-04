@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace ADSortSearch {
     class Bubble : Measurement {
-        protected override int[] StartMeasurment(int repeats, Stopwatch watch) {
+        protected override int[] Measure(int repeats, Stopwatch watch) {
             watch.Start();
             for (var repeat = 0; repeat < repeats; repeat++) {
                 for (var i = 0; i < Ints.Length - 1; i++) {

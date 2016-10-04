@@ -18,10 +18,10 @@ namespace ADSortSearch {
         private const int Seed = 5;
         protected Random Random { get; } = new Random(Seed);
         protected int[] Ints { get; }
-        protected abstract int[] StartMeasurment(int repeats, Stopwatch watch);
+        protected abstract int[] Measure(int repeats, Stopwatch watch);
 
         public int[] Start(int repeats) {
-            var arr = StartMeasurment(repeats, Watch);
+            var arr = Measure(repeats, Watch);
             StopWatchResult = Watch.Elapsed;
             return arr;
         }
