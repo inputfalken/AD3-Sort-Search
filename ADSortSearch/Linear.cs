@@ -5,17 +5,20 @@ using System.Linq;
 
 namespace ADSortSearch {
     public class Linear : Measurement {
-        protected override int[] Measure(int repeats, Stopwatch watch) {
+        protected override void Measure(int repeats, Stopwatch watch) {
             watch.Restart();
-            var keys = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
-            foreach (var key in keys) {
-                foreach (var number in Ints) {
-                    if (number == key) {
-                        break;
-                    }
+            foreach (var number in NumbersToFind) {
+                LinearSearch(number);
+            }
+        }
+
+        private int LinearSearch(int key) {
+            foreach (var number in Ints) {
+                if (number == key) {
+                    return key;
                 }
             }
-            return keys;
+            return -1;
         }
 
         public Linear(int length, bool sorted) : base(length, sorted) {}

@@ -17,23 +17,26 @@ namespace ADSortSearch {
         /// <param name="repeats"></param>
         /// <param name="watch"></param>
         /// <returns>The elapsed time for all attempts</returns>
-        protected override int[] Measure(int repeats, Stopwatch watch) {
+        protected override void Measure(int repeats, Stopwatch watch) {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
             watch.Restart();
-            var arr = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
+            foreach (var number in NumbersToFind) {
+                BinarySearch(number);
+            }
+        }
+
+        private int BinarySearch(int key) {
             var lo = 0;
             var hi = Ints.Length - 1;
-            foreach (var key in arr) {
-                while (lo <= hi) {
-                    var mid = lo + (hi - lo)/2;
-                    if (key < Ints[mid]) hi = mid - 1;
-                    else if (key > Ints[mid]) lo = mid + 1;
-                    else break;
-                }
+            while (lo <= hi) {
+                var mid = lo + (hi - lo)/2;
+                if (key < Ints[mid]) hi = mid - 1;
+                else if (key > Ints[mid]) lo = mid + 1;
+                else return mid;
             }
-            return arr;
+            throw new Exception("No Result found");
         }
     }
 }

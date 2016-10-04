@@ -16,14 +16,15 @@ namespace ADSortSearch {
         }
 
         private const int Seed = 5;
-        protected Random Random { get; } = new Random(Seed);
+        private Random Random { get; } = new Random(Seed);
         protected int[] Ints { get; }
-        protected abstract int[] Measure(int repeats, Stopwatch watch);
+        protected abstract void Measure(int repeats, Stopwatch watch);
+        protected int[] NumbersToFind { get; private set; }
 
-        public int[] Start(int repeats) {
-            var arr = Measure(repeats, Watch);
+        public void Start(int repeats) {
+            NumbersToFind = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
+            Measure(repeats, Watch);
             StopWatchResult = Watch.Elapsed;
-            return arr;
         }
 
         private Stopwatch Watch { get; } = new Stopwatch();
