@@ -21,7 +21,7 @@ namespace ADSortSearch {
             // Checks that the collection is ordered.
             if (!Ints.Zip(Ints.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
-            watch.Restart();
+            watch.Start();
             foreach (var number in NumbersToFind) {
                 BinarySearch(number);
             }

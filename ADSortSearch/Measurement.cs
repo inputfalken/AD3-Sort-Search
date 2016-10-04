@@ -25,6 +25,7 @@ namespace ADSortSearch {
             NumbersToFind = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
             Measure(repeats, Watch);
             StopWatchResult = Watch.Elapsed;
+            Watch.Reset();
         }
 
         private Stopwatch Watch { get; } = new Stopwatch();

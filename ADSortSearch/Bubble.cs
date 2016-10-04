@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace ADSortSearch {
     internal class Bubble : Measurement {
         protected override void Measure(int repeats, Stopwatch watch) {
-            watch.Restart();
+            watch.Start();
             var res =BubbleSort(repeats);
         }
 
