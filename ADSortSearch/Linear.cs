@@ -18,7 +18,7 @@ namespace ADSortSearch {
                     return key;
                 }
             }
-            return -1;
+            throw new Exception("Could not find an element.");
         }
 
         public Linear(int length, bool sorted) : base(length, sorted) {}
