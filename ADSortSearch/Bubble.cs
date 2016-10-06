@@ -28,7 +28,7 @@ namespace ADSortSearch {
                     }
                 }
             }
-            return Collection;
+            return IntArr;
         }
     }
 }

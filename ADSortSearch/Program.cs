@@ -34,7 +34,7 @@ namespace ADSortSearch {
             stringBuilder.AppendLine("\nHashSet result: ");
             foreach (var result in measureHash.Results)
                 stringBuilder.AppendLine(result.ToString());
-            stringBuilder.AppendLine("Binary Result: ");
+            stringBuilder.AppendLine("\nBinary Result: ");
             foreach (var result in measureBinary.Results)
                 stringBuilder.AppendLine(result.ToString());
             stringBuilder.AppendLine("\nLinear Result: ");
