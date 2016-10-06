@@ -5,22 +5,21 @@ using System.Linq;
 
 namespace ADSortSearch {
     public abstract class Measurement {
-        protected Measurement(int length, bool sorted) {
-            Collection = sorted
-                ? Enumerable.Range(0, length).ToArray()
-                : Enumerable.Range(0, length).Select(i => Random.Next(length)).ToArray();
-        }
-
-        protected Measurement(ICollection<int> collection, int length, bool sorted) {
+        protected Measurement(ICollection<int> collection, bool sorted) {
             Collection = collection;
-            foreach (var i in Enumerable.Range(0, length))
-                Collection.Add(sorted ? i : Random.Next(length));
+            Sorted = sorted;
         }
 
+        public void CollectionLength(int length) {
+            Collection.Clear();
+            foreach (var i in Enumerable.Range(0, length))
+                Collection.Add(Sorted ? i : Random.Next(length));
+        }
 
         private const int Seed = 5;
         private Random Random { get; } = new Random(Seed);
         protected ICollection<int> Collection { get; }
+        private bool Sorted { get; }
         protected abstract void Measure(int repeats, Stopwatch watch);
         protected int[] NumbersToFind { get; private set; }
 

@@ -5,11 +5,12 @@ using System.Linq;
 namespace ADSortSearch {
     internal class Bubble : Measurement {
         protected override void Measure(int repeats, Stopwatch watch) {
+            IntArr = Collection.ToArray();
             watch.Start();
             var res = BubbleSort(repeats);
         }
 
-        private int[] IntArr { get; }
+        private int[] IntArr { get; set; }
 
         private IEnumerable<int> BubbleSort(int repeats) {
             for (var repeat = 0; repeat < repeats; repeat++) {
@@ -27,12 +28,7 @@ namespace ADSortSearch {
         }
 
 
-        public Bubble(int length, bool sorted) : base(length, sorted) {
-            IntArr = Collection.ToArray();
-        }
 
-        public Bubble(ICollection<int> collection, int length, bool sorted) : base(collection, length, sorted) {
-            IntArr = Collection.ToArray();
-        }
+        public Bubble(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
     }
 }

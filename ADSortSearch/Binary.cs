@@ -5,12 +5,7 @@ using System.Linq;
 
 namespace ADSortSearch {
     public class Binary : Measurement {
-        public Binary(int length, bool sorted) : base(length, sorted) {
-            IntArray = Collection.ToArray();
-        }
-        public Binary(ICollection<int> collection, int length, bool sorted) : base(collection, length, sorted) {
-            IntArray = Collection.ToArray();
-        }
+        public Binary(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
 
 
         /// <summary>
@@ -23,6 +18,7 @@ namespace ADSortSearch {
         /// <returns>The elapsed time for all attempts</returns>
         protected override void Measure(int repeats, Stopwatch watch) {
             // Checks that the collection is ordered.
+            IntArray = Collection.ToArray();
             if (!Collection.Zip(Collection.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
             watch.Start();
@@ -31,7 +27,8 @@ namespace ADSortSearch {
             }
         }
 
-        private int[] IntArray { get; }
+        private int[] IntArray { get; set; }
+
         private int BinarySearch(int key) {
             var lo = 0;
             var hi = Collection.Count - 1;

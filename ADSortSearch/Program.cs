@@ -19,15 +19,19 @@ namespace ADSortSearch {
             const int repeats = 100000;
             const bool sorted = true;
             const int powBase = 2;
+            var measureBinary = Measurement.CreateNew(new Binary(new List<int>(), sorted));
+            var measureLinear = Measurement.CreateNew(new Linear(new List<int>(), sorted));
+            var measureBubble = Measurement.CreateNew(new Bubble(new List<int>(), sorted));
+            var measureHash =
+                Measurement.CreateNew(new HashSetContains(new HashSet<int>(), sorted));
             for (var i = 10; i <= 15; i++) {
-                var measureBinary = Measurement.CreateNew(new Binary((int) Math.Pow(powBase, i), sorted));
-                var measureLinear = Measurement.CreateNew(new Linear((int) Math.Pow(powBase, i), sorted));
-                var measureBubble = Measurement.CreateNew(new Bubble((int) Math.Pow(powBase, i), !sorted));
-                var measureHash =
-                    Measurement.CreateNew(new HashSetContains(new HashSet<int>(), (int) Math.Pow(powBase, i), sorted));
+                measureLinear.CollectionLength((int) Math.Pow(powBase, i));
                 measureLinear.Start(repeats);
+                measureBinary.CollectionLength((int) Math.Pow(powBase, i));
                 measureBinary.Start(repeats);
+                measureBubble.CollectionLength((int) Math.Pow(powBase, i));
                 measureBubble.Start(1);
+                measureHash.CollectionLength((int) Math.Pow(powBase, i));
                 measureHash.Start(repeats);
                 binaryResults.Enqueue(measureBinary.Watch.ElapsedMilliseconds.ToString());
                 linearResults.Enqueue(measureLinear.Watch.ElapsedMilliseconds.ToString());
