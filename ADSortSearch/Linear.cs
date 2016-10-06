@@ -13,7 +13,7 @@ namespace ADSortSearch {
         }
 
         private int LinearSearch(int key) {
-            foreach (var number in Ints) {
+            foreach (var number in Collection) {
                 if (number == key) {
                     return key;
                 }
@@ -22,6 +22,6 @@ namespace ADSortSearch {
         }
 
         public Linear(int length, bool sorted) : base(length, sorted) {}
-        public Linear(IEnumerable<int> enumerable) : base(enumerable) {}
+        public Linear(ICollection<int> collection, int lenght, bool sorted) : base(collection, lenght, sorted) {}
     }
 }

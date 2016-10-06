@@ -6,24 +6,27 @@ using System.Linq;
 namespace ADSortSearch {
     public abstract class Measurement {
         protected Measurement(int length, bool sorted) {
-            Ints = sorted
+            Collection = sorted
                 ? Enumerable.Range(0, length).ToArray()
                 : Enumerable.Range(0, length).Select(i => Random.Next(length)).ToArray();
         }
 
-        protected Measurement(IEnumerable<int> enumerable) {
-            Ints = enumerable.ToArray();
+        protected Measurement(ICollection<int> collection, int length, bool sorted) {
+            Collection = collection;
+            foreach (var i in Enumerable.Range(0, length))
+                Collection.Add(sorted ? i : Random.Next(length));
         }
+
 
         private const int Seed = 5;
         private Random Random { get; } = new Random(Seed);
-        protected int[] Ints { get; }
+        protected ICollection<int> Collection { get; }
         protected abstract void Measure(int repeats, Stopwatch watch);
         protected int[] NumbersToFind { get; private set; }
 
         public void Start(int repeats) {
             Watch.Reset();
-            NumbersToFind = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
+            NumbersToFind = Enumerable.Range(0, repeats).Select(i => Random.Next(Collection.Count)).ToArray();
             Measure(repeats, Watch);
         }
 
