@@ -25,9 +25,9 @@ namespace ADSortSearch {
                 measureLinear.Start(repeats);
                 measureBinary.Start(repeats);
                 measureBubble.Start(1);
-                binaryResults.Enqueue(measureBinary.StopWatchResult.ToString());
-                linearResults.Enqueue(measureLinear.StopWatchResult.ToString());
-                bubbleResult.Enqueue(measureBubble.StopWatchResult.ToString());
+                binaryResults.Enqueue(measureBinary.Watch.ElapsedMilliseconds.ToString());
+                linearResults.Enqueue(measureLinear.Watch.ElapsedMilliseconds.ToString());
+                bubbleResult.Enqueue(measureBubble.Watch.ElapsedMilliseconds.ToString());
             }
 
             stringBuilder.AppendLine("Binary Result: ");

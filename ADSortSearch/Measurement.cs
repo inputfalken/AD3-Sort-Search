@@ -22,14 +22,12 @@ namespace ADSortSearch {
         protected int[] NumbersToFind { get; private set; }
 
         public void Start(int repeats) {
+            Watch.Reset();
             NumbersToFind = Enumerable.Range(0, repeats).Select(i => Random.Next(Ints.Length)).ToArray();
             Measure(repeats, Watch);
-            StopWatchResult = Watch.Elapsed;
-            Watch.Reset();
         }
 
-        private Stopwatch Watch { get; } = new Stopwatch();
-        public TimeSpan StopWatchResult { get; private set; }
+        public Stopwatch Watch { get; } = new Stopwatch();
 
         public static Measurement CreateNew(Measurement measurement) => measurement;
     }
