@@ -33,7 +33,7 @@ namespace ADSortSearch {
                 measureHash.Start(Repeats);
             }
 
-            stringBuilder.AppendLine("HashSet result: ");
+            stringBuilder.AppendLine("\nHashSet result: ");
             foreach (var result in measureHash.Results)
                 stringBuilder.AppendLine(result.ToString());
             stringBuilder.AppendLine("Binary Result: ");
