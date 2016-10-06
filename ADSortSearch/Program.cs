@@ -21,9 +21,10 @@ namespace ADSortSearch {
             const int powBase = 2;
             var measureBinary = Measurement.CreateNew(new Binary(new List<int>(), sorted));
             var measureLinear = Measurement.CreateNew(new Linear(new List<int>(), sorted));
-            var measureBubble = Measurement.CreateNew(new Bubble(new List<int>(), sorted));
+            var measureBubble = Measurement.CreateNew(new Bubble(new List<int>(), !sorted));
             var measureHash =
                 Measurement.CreateNew(new HashSetContains(new HashSet<int>(), sorted));
+
             for (var i = 10; i <= 15; i++) {
                 measureLinear.CollectionLength((int) Math.Pow(powBase, i));
                 measureLinear.Start(repeats);

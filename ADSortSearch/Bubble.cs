@@ -7,26 +7,27 @@ namespace ADSortSearch {
         protected override void Measure(int repeats, Stopwatch watch) {
             IntArr = Collection.ToArray();
             watch.Start();
-            var res = BubbleSort(repeats);
+            var res = BubbleSort();
         }
 
         private int[] IntArr { get; set; }
 
-        private IEnumerable<int> BubbleSort(int repeats) {
-            for (var repeat = 0; repeat < repeats; repeat++) {
+        private IEnumerable<int> BubbleSort() {
+            var stillGoing = true;
+            while (stillGoing) {
+                stillGoing = false;
                 for (var i = 0; i < IntArr.Length - 1; i++) {
-                    for (var j = 0; j < IntArr.Length - 1; j++) {
-                        if (IntArr[j] > IntArr[j + 1]) {
-                            var temp = IntArr[j];
-                            IntArr[j] = IntArr[j + 1];
-                            IntArr[j + 1] = temp;
-                        }
+                    var x = IntArr[i];
+                    var y = IntArr[i + 1];
+                    if (x > y) {
+                        IntArr[i] = y;
+                        IntArr[i + 1] = x;
+                        stillGoing = true;
                     }
                 }
             }
             return Collection;
         }
-
 
 
         public Bubble(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
