@@ -7,9 +7,7 @@ namespace ADSortSearch {
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();
-            for (int i = 0; i < NumbersToFind.Length; i++) {
-                Collection.Contains(NumbersToFind[i]);
-            }
+            for (var i = 0; i < NumbersToFind.Length; i++) Collection.Contains(NumbersToFind[i]);
         }
     }
 }

@@ -4,13 +4,15 @@ using System.Linq;
 
 namespace ADSortSearch {
     internal class Bubble : Measurement {
+        public Bubble(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
+
+        private int[] IntArr { get; set; }
+
         protected override void Measure(Stopwatch watch) {
             IntArr = Collection.ToArray();
             watch.Start();
             var res = BubbleSort();
         }
-
-        private int[] IntArr { get; set; }
 
         private IEnumerable<int> BubbleSort() {
             var stillGoing = true;
@@ -28,8 +30,5 @@ namespace ADSortSearch {
             }
             return Collection;
         }
-
-
-        public Bubble(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
     }
 }
