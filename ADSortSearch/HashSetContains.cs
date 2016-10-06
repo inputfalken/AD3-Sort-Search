@@ -7,6 +7,7 @@ namespace ADSortSearch {
         public HashSetContains(ICollection<int> collection, int length, bool sorted) : base(collection, length, sorted) {}
 
         protected override void Measure(int repeats, Stopwatch watch) {
+            watch.Start();
             for (int i = 0; i < NumbersToFind.Length; i++) {
                 Collection.Contains(NumbersToFind[i]);
             }

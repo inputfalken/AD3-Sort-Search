@@ -26,8 +26,8 @@ namespace ADSortSearch {
             if (!Collection.Zip(Collection.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
             watch.Start();
-            foreach (var number in NumbersToFind) {
-                BinarySearch(number);
+            for (var i = 0; i < NumbersToFind.Length; i++) {
+                BinarySearch(NumbersToFind[i]);
             }
         }
 

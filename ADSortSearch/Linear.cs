@@ -7,21 +7,28 @@ namespace ADSortSearch {
     public class Linear : Measurement {
         protected override void Measure(int repeats, Stopwatch watch) {
             watch.Start();
-            foreach (var number in NumbersToFind) {
-                LinearSearch(number);
+            for (int i = 0; i < NumbersToFind.Length; i++) {
+                LinearSearch(NumbersToFind[i]);
             }
         }
 
         private int LinearSearch(int key) {
-            foreach (var number in Collection) {
-                if (number == key) {
+            for (var i = 0; i < IntArr.Length; i++) {
+                if (key == IntArr[i]) {
                     return key;
                 }
             }
             throw new Exception("Could not find an element.");
         }
 
-        public Linear(int length, bool sorted) : base(length, sorted) {}
-        public Linear(ICollection<int> collection, int lenght, bool sorted) : base(collection, lenght, sorted) {}
+        private int[] IntArr { get; }
+
+        public Linear(int length, bool sorted) : base(length, sorted) {
+            IntArr = Collection.ToArray();
+        }
+
+        public Linear(ICollection<int> collection, int lenght, bool sorted) : base(collection, lenght, sorted) {
+            IntArr = Collection.ToArray();
+        }
     }
 }
