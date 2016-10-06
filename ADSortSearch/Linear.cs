@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ADSortSearch {
     public class Linear : Measurement {
-        protected override void Measure(int repeats, Stopwatch watch) {
+        protected override void Measure(Stopwatch watch) {
             IntArr = Collection.ToArray();
             watch.Start();
             for (int i = 0; i < NumbersToFind.Length; i++) {

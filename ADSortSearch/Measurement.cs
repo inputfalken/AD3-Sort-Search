@@ -20,12 +20,12 @@ namespace ADSortSearch {
         private Random Random { get; } = new Random(Seed);
         protected ICollection<int> Collection { get; }
         private bool Sorted { get; }
-        protected abstract void Measure(int repeats, Stopwatch watch);
+        protected abstract void Measure(Stopwatch watch);
         protected int[] NumbersToFind { get; private set; }
 
         public void Start(int repeats) {
             NumbersToFind = Enumerable.Range(0, repeats).Select(i => Random.Next(Collection.Count)).ToArray();
-            Measure(repeats, Watch);
+            Measure(Watch);
             Results.Enqueue(Watch.ElapsedMilliseconds);
             Watch.Reset();
         }

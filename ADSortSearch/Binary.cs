@@ -13,10 +13,9 @@ namespace ADSortSearch {
         ///     Then it perform a for loop up till repeats arg. 
         ///     Each iteration in the for loop will perform a binary search.
         /// </summary>
-        /// <param name="repeats"></param>
         /// <param name="watch"></param>
         /// <returns>The elapsed time for all attempts</returns>
-        protected override void Measure(int repeats, Stopwatch watch) {
+        protected override void Measure(Stopwatch watch) {
             // Checks that the collection is ordered.
             IntArray = Collection.ToArray();
             if (!Collection.Zip(Collection.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
