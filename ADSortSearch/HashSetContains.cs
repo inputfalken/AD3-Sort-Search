@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ADSortSearch {
@@ -7,7 +8,11 @@ namespace ADSortSearch {
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();
-            for (var i = 0; i < NumbersToFind.Length; i++) Collection.Contains(NumbersToFind[i]);
+            for (var i = 0; i < NumbersToFind.Length; i++) {
+                if (Collection.Contains(NumbersToFind[i]))
+                    return;
+                throw new Exception("Could not find element");
+            }
         }
     }
 }
