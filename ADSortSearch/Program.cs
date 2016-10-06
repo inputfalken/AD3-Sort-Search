@@ -14,6 +14,7 @@ namespace ADSortSearch {
             var binaryResults = new Queue<string>();
             var linearResults = new Queue<string>();
             var bubbleResult = new Queue<string>();
+            var hashResult = new Queue<string>();
             var stringBuilder = new StringBuilder();
             const int repeats = 100000;
             const bool sorted = true;
@@ -22,12 +23,16 @@ namespace ADSortSearch {
                 var measureBinary = Measurement.CreateNew(new Binary((int) Math.Pow(powBase, i), sorted));
                 var measureLinear = Measurement.CreateNew(new Linear((int) Math.Pow(powBase, i), sorted));
                 var measureBubble = Measurement.CreateNew(new Bubble((int) Math.Pow(powBase, i), !sorted));
+                var measureHash =
+                    Measurement.CreateNew(new HashSetContains(new HashSet<int>(), (int) Math.Pow(powBase, i), sorted));
                 measureLinear.Start(repeats);
                 measureBinary.Start(repeats);
                 measureBubble.Start(1);
+                measureHash.Start(repeats);
                 binaryResults.Enqueue(measureBinary.Watch.ElapsedMilliseconds.ToString());
                 linearResults.Enqueue(measureLinear.Watch.ElapsedMilliseconds.ToString());
                 bubbleResult.Enqueue(measureBubble.Watch.ElapsedMilliseconds.ToString());
+                hashResult.Enqueue(measureHash.Watch.ElapsedMilliseconds.ToString());
             }
 
             stringBuilder.AppendLine("Binary Result: ");
@@ -36,6 +41,7 @@ namespace ADSortSearch {
             while (linearResults.Any()) stringBuilder.AppendLine(linearResults.Dequeue());
             stringBuilder.AppendLine("\nBubble Sort Result: ");
             while (bubbleResult.Any()) stringBuilder.AppendLine(bubbleResult.Dequeue());
+            while (hashResult.Any()) stringBuilder.AppendLine(hashResult.Dequeue());
             return stringBuilder.ToString();
         }
     }
