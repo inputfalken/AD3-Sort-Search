@@ -24,12 +24,15 @@ namespace ADSortSearch {
         protected int[] NumbersToFind { get; private set; }
 
         public void Start(int repeats) {
-            Watch.Reset();
             NumbersToFind = Enumerable.Range(0, repeats).Select(i => Random.Next(Collection.Count)).ToArray();
             Measure(repeats, Watch);
+            Results.Enqueue(Watch.ElapsedMilliseconds);
+            Watch.Reset();
         }
 
-        public Stopwatch Watch { get; } = new Stopwatch();
+        public Queue<long> Results { get; } = new Queue<long>();
+
+        private Stopwatch Watch { get; } = new Stopwatch();
 
         public static Measurement CreateNew(Measurement measurement) => measurement;
     }

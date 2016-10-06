@@ -6,47 +6,45 @@ using System.Text;
 
 namespace ADSortSearch {
     internal static class Program {
+        private const int Repeats = 100000;
+        private const bool Sorted = true;
+        private const int PowBase = 2;
+
         private static void Main(string[] args) {
             Console.WriteLine(Measure());
         }
 
         private static string Measure() {
-            var binaryResults = new Queue<string>();
-            var linearResults = new Queue<string>();
-            var bubbleResult = new Queue<string>();
-            var hashResult = new Queue<string>();
             var stringBuilder = new StringBuilder();
-            const int repeats = 100000;
-            const bool sorted = true;
-            const int powBase = 2;
-            var measureBinary = Measurement.CreateNew(new Binary(new List<int>(), sorted));
-            var measureLinear = Measurement.CreateNew(new Linear(new List<int>(), sorted));
-            var measureBubble = Measurement.CreateNew(new Bubble(new List<int>(), !sorted));
+            var measureBinary = Measurement.CreateNew(new Binary(new List<int>(), Sorted));
+            var measureLinear = Measurement.CreateNew(new Linear(new List<int>(), Sorted));
+            var measureBubble = Measurement.CreateNew(new Bubble(new List<int>(), !Sorted));
             var measureHash =
-                Measurement.CreateNew(new HashSetContains(new HashSet<int>(), sorted));
+                Measurement.CreateNew(new HashSetContains(new HashSet<int>(), Sorted));
 
             for (var i = 10; i <= 15; i++) {
-                measureLinear.CollectionLength((int) Math.Pow(powBase, i));
-                measureLinear.Start(repeats);
-                measureBinary.CollectionLength((int) Math.Pow(powBase, i));
-                measureBinary.Start(repeats);
-                measureBubble.CollectionLength((int) Math.Pow(powBase, i));
+                measureLinear.CollectionLength((int) Math.Pow(PowBase, i));
+                measureLinear.Start(Repeats);
+                measureBinary.CollectionLength((int) Math.Pow(PowBase, i));
+                measureBinary.Start(Repeats);
+                measureBubble.CollectionLength((int) Math.Pow(PowBase, i));
                 measureBubble.Start(1);
-                measureHash.CollectionLength((int) Math.Pow(powBase, i));
-                measureHash.Start(repeats);
-                binaryResults.Enqueue(measureBinary.Watch.ElapsedMilliseconds.ToString());
-                linearResults.Enqueue(measureLinear.Watch.ElapsedMilliseconds.ToString());
-                bubbleResult.Enqueue(measureBubble.Watch.ElapsedMilliseconds.ToString());
-                hashResult.Enqueue(measureHash.Watch.ElapsedMilliseconds.ToString());
+                measureHash.CollectionLength((int) Math.Pow(PowBase, i));
+                measureHash.Start(Repeats);
             }
 
+            stringBuilder.AppendLine("HashSet result: ");
+            foreach (var result in measureHash.Results)
+                stringBuilder.AppendLine(result.ToString());
             stringBuilder.AppendLine("Binary Result: ");
-            while (binaryResults.Any()) stringBuilder.AppendLine(binaryResults.Dequeue());
+            foreach (var result in measureBinary.Results)
+                stringBuilder.AppendLine(result.ToString());
             stringBuilder.AppendLine("\nLinear Result: ");
-            while (linearResults.Any()) stringBuilder.AppendLine(linearResults.Dequeue());
+            foreach (var result in measureLinear.Results)
+                stringBuilder.AppendLine(result.ToString());
             stringBuilder.AppendLine("\nBubble Sort Result: ");
-            while (bubbleResult.Any()) stringBuilder.AppendLine(bubbleResult.Dequeue());
-            while (hashResult.Any()) stringBuilder.AppendLine(hashResult.Dequeue());
+            foreach (var result in measureBubble.Results)
+                stringBuilder.AppendLine(result.ToString());
             return stringBuilder.ToString();
         }
     }
