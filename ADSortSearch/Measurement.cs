@@ -22,7 +22,7 @@ namespace ADSortSearch {
 
         private bool Sorted { get; }
 
-        protected int[] NumbersToFind { get; private set; }
+        protected IList<int> NumbersToFind { get; private set; }
 
         public Queue<long> Results { get; } = new Queue<long>();
 

@@ -8,7 +8,7 @@ namespace ADSortSearch {
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();
-            for (var i = 0; i < NumbersToFind.Length; i++) {
+            for (var i = 0; i < NumbersToFind.Count; i++) {
                 if (!Collection.Contains(NumbersToFind[i])) throw new Exception("Could not find element");
             }
         }
