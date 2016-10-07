@@ -11,24 +11,24 @@ namespace ADSortSearch {
         protected override void Measure(Stopwatch watch) {
             IntArr = Collection.ToArray();
             watch.Start();
-            var res = BubbleSort();
+            var res = BubbleSort(IntArr);
         }
 
-        private IEnumerable<int> BubbleSort() {
+        private static IEnumerable<int> BubbleSort(IList<int> list) {
             var stillGoing = true;
             while (stillGoing) {
                 stillGoing = false;
-                for (var i = 0; i < IntArr.Length - 1; i++) {
-                    var x = IntArr[i];
-                    var y = IntArr[i + 1];
+                for (var i = 0; i < list.Count - 1; i++) {
+                    var x = list[i];
+                    var y = list[i + 1];
                     if (x > y) {
-                        IntArr[i] = y;
-                        IntArr[i + 1] = x;
+                        list[i] = y;
+                        list[i + 1] = x;
                         stillGoing = true;
                     }
                 }
             }
-            return IntArr;
+            return list;
         }
     }
 }
