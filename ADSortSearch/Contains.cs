@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ADSortSearch {
-    internal class HashSetContains : Measurement {
-        public HashSetContains(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
+    internal class Contains : Measurement {
+        public Contains(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();

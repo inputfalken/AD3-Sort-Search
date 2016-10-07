@@ -16,7 +16,7 @@ namespace ADSortSearch {
             var measureBinary = Measurement.CreateNew(new Binary(new List<int>(), Sorted));
             var measureLinear = Measurement.CreateNew(new Linear(new List<int>(), Sorted));
             var measureBubble = Measurement.CreateNew(new Bubble(new List<int>(), !Sorted));
-            var measureHash = Measurement.CreateNew(new HashSetContains(new HashSet<int>(), Sorted));
+            var measureHash = Measurement.CreateNew(new Contains(new HashSet<int>(), Sorted));
 
             measureLinear.Start(Repeats);
             measureBinary.Start(Repeats);
