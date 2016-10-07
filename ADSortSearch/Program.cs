@@ -21,6 +21,7 @@ namespace ADSortSearch {
             measureLinear.Start(Repeats);
             measureBinary.Start(Repeats);
             measureHash.Start(Repeats);
+            measureBubble.Start(Repeats);
 
             stringBuilder.AppendLine("\nHashSet result: ");
             foreach (var result in measureHash.Results)
