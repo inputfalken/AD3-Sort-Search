@@ -6,12 +6,10 @@ namespace ADSortSearch {
     internal class Bubble : Measurement {
         public Bubble(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
 
-        private int[] IntArr { get; set; }
 
         protected override void Measure(Stopwatch watch) {
-            IntArr = Collection.ToArray();
             watch.Start();
-            var res = BubbleSort(IntArr);
+            var res = BubbleSort(Collection.ToArray());
         }
 
         private static IEnumerable<int> BubbleSort(IList<int> list) {
