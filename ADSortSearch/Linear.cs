@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ADSortSearch {
     public class Linear : Measurement {
-        public Linear(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
+        public Linear(ICollection<int> collection, bool sorted = true) : base(collection, sorted) {}
 
 
         protected override void Measure(Stopwatch watch) {

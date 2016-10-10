@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace ADSortSearch {
     internal class Contains : Measurement {
-        public Contains(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
+        public Contains(ICollection<int> collection, bool sorted = true) : base(collection, sorted) {}
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();

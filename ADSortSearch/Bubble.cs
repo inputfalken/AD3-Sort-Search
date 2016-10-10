@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ADSortSearch {
     internal class Bubble : Measurement {
-        public Bubble(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
+        public Bubble(ICollection<int> collection) : base(collection, false) {}
 
 
         protected override void Measure(Stopwatch watch) {

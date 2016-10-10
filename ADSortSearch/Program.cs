@@ -13,10 +13,10 @@ namespace ADSortSearch {
 
         private static string Measure() {
             var stringBuilder = new StringBuilder();
-            var measureBinary = Measurement.CreateNew(new Binary(new List<int>(), Sorted));
-            var measureLinear = Measurement.CreateNew(new Linear(new List<int>(), Sorted));
-            var measureBubble = Measurement.CreateNew(new Bubble(new List<int>(), !Sorted));
-            var measureHash = Measurement.CreateNew(new Contains(new HashSet<int>(), Sorted));
+            var measureBinary = Measurement.CreateNew(new Binary(new List<int>()));
+            var measureLinear = Measurement.CreateNew(new Linear(new List<int>()));
+            var measureBubble = Measurement.CreateNew(new Bubble(new List<int>()));
+            var measureHash = Measurement.CreateNew(new Contains(new HashSet<int>()));
 
             measureLinear.Start(Repeats);
             measureBinary.Start(Repeats);

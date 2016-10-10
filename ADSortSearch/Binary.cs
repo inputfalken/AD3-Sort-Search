@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ADSortSearch {
     public class Binary : Measurement {
-        public Binary(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
+        public Binary(ICollection<int> collection) : base(collection, true) {}
 
 
         protected override void Measure(Stopwatch watch) {
