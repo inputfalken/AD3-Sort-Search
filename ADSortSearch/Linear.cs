@@ -10,7 +10,7 @@ namespace ADSortSearch {
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();
-            for (var i = 0; i < NumbersToFind.Count; i++) LinearSearch(NumbersToFind[i], Collection.ToArray());
+            for (var i = 0; i < RandomIntegers.Count; i++) LinearSearch(RandomIntegers[i], Collection.ToArray());
         }
 
         private static int LinearSearch(int key, IList<int> list) {
