@@ -7,12 +7,9 @@ namespace ADSortSearch {
     public class Binary : Measurement {
         public Binary(ICollection<int> collection, bool sorted) : base(collection, sorted) {}
 
-        private int[] IntArray { get; set; }
-
 
         protected override void Measure(Stopwatch watch) {
             // Checks that the collection is ordered.
-            IntArray = Collection.ToArray();
             if (!Collection.Zip(Collection.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
             watch.Start();
