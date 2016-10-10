@@ -13,8 +13,8 @@ namespace ADSortSearch {
             if (!Collection.Zip(Collection.Skip(1), (a, b) => new {a, b}).All(p => p.a <= p.b))
                 throw new Exception("Collection must be sorted");
             watch.Start();
-            foreach (int t in RandomIntegers)
-                BinarySearch(t, Collection.ToArray());
+            foreach (var randomNumber in RandomIntegers)
+                BinarySearch(randomNumber, Collection.ToArray());
         }
 
         private static int BinarySearch(int key, IList<int> list) {

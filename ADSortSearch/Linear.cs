@@ -10,12 +10,12 @@ namespace ADSortSearch {
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();
-            foreach (int t in RandomIntegers)
-                LinearSearch(t, Collection.ToArray());
+            foreach (var randomNumber in RandomIntegers)
+                LinearSearch(randomNumber, Collection.ToArray());
         }
 
         private static int LinearSearch(int key, IEnumerable<int> list) {
-            foreach (int t in list)
+            foreach (var t in list)
                 if (key == t) return key;
             throw new Exception("Could not find an element.");
         }
