@@ -5,7 +5,6 @@ using System.Text;
 namespace ADSortSearch {
     internal static class Program {
         private const int Repeats = 100000;
-        private const bool Sorted = true;
 
         private static void Main(string[] args) {
             Console.WriteLine(Measure());
