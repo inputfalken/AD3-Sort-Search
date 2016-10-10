@@ -14,7 +14,7 @@ namespace ADSortSearch {
                 LinearSearch(t, Collection.ToArray());
         }
 
-        private static int LinearSearch(int key, IList<int> list) {
+        private static int LinearSearch(int key, IEnumerable<int> list) {
             foreach (int t in list)
                 if (key == t) return key;
             throw new Exception("Could not find an element.");
