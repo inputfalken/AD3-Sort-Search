@@ -23,7 +23,7 @@ namespace ADSortSearch {
 
         private bool Sorted { get; }
 
-        protected IList<int> RandomIntegers { get; private set; }
+        protected IEnumerable<int> RandomIntegers { get; private set; }
 
         public Queue<long> Results { get; } = new Queue<long>();
 

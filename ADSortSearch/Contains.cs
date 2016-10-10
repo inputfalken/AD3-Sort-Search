@@ -8,8 +8,8 @@ namespace ADSortSearch {
 
         protected override void Measure(Stopwatch watch) {
             watch.Start();
-            for (var i = 0; i < RandomIntegers.Count; i++) {
-                if (!Collection.Contains(RandomIntegers[i])) throw new Exception("Could not find element");
+            foreach (int t in RandomIntegers) {
+                if (!Collection.Contains(t)) throw new Exception("Could not find element");
             }
         }
     }
