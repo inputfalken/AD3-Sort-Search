@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using static System.Linq.Enumerable;
 
 namespace ADSortSearch {
@@ -9,13 +8,13 @@ namespace ADSortSearch {
         private const int Seed = 5;
         private const int PowBase = 2;
 
-        private static IEnumerable<int> CollectionLengths { get; } =
-            Range(10, 5).Select(i => (int) Math.Pow(PowBase, i));
-
         protected Measurement(ICollection<int> collection, bool sorted) {
             Collection = collection;
             Sorted = sorted;
         }
+
+        private static IEnumerable<int> CollectionLengths { get; } =
+            Range(10, 5).Select(i => (int) Math.Pow(PowBase, i));
 
         private Random Random { get; } = new Random(Seed);
 
